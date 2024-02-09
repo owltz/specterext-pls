@@ -1,0 +1,72 @@
+{% extends "specterext-pls/components/specterext_pls_tab.jinja" %}
+{% block title %}Contracts{% endblock %}
+{% set tab = 'contracts' %}
+{% block content %}
+    <style>
+        h1 {
+            margin-top: 1em;
+        }
+        .linked_wallet {
+            margin-bottom: 3em;
+        }
+        .no_linked_wallet {
+            background-color: var(--cmap-bg-lighter);
+            border: 2px solid yellow;
+            border-radius: 0.5em;
+            padding: 2em 3em 2em 3em;
+            margin-bottom: 3em;
+        }
+        .no_linked_wallet .headline {
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 1em;
+        }
+        .footnote {
+            margin-top: 2em;
+            font-style: italic;
+            font-size: 0.85em;
+            color: #999;
+        }
+    </style>
+
+    <h1>PLS Contracts</h1>
+    {% if wallet %}
+        <div class="linked_wallet">
+            Linked wallet: <a class="explorer-link" href="{{ url_for('wallets_endpoint.addresses', wallet_alias=wallet.alias) }}">{{ wallet.name }}</a><br/>
+            <p>Linked device: {{ device.name }}</p>
+            <p>npubhex: {{ npubhex }}</p>
+            <p>npub: {{ npub }}</p>
+        </div>
+
+    {% else %}
+        <div class="no_linked_wallet">
+            <div class="headline">{{ _("Linked Wallet Not Configured") }}</div>
+            <div class="note">
+                {{ _("Go to Settings to set up which wallet should be linked to this extension.") }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="table-holder my-10">
+        <table id="contracts-table">
+			<thead>
+				<tr>
+					<th>{{ _("ContractID") }}</th>
+                    <th>{{ _("Name") }}</th>
+                    <th>{{ _("Amount") }}</th>
+                    <th>{{ _("Time") }}</th>
+                    <th>{{ _("Actions") }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for key in device.keys %}
+					<tr>
+						<td>
+                            {{ key.derivation }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "specterext-pls/base.jinja" %}
+{% block main %}
+    <img src="{{ url_for(service.id +'_endpoint' + '.static', filename=service.logo) }}" width="100"/>
+    {% from 'specterext-pls/components/specterext_pls_menu.jinja' import specterext_pls_menu with context %}
+    {{ specterext_pls_menu(tab) }}
+    {% block content %}
+    {% endblock %}
+{% endblock %}

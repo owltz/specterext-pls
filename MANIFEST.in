@@ -1,0 +1,5 @@
+recursive-include src/pls/specterext/specterext-pls/templates *
+recursive-include src/pls/specterext/specterext-pls/static *
+recursive-include src/pls/specterext/specterext-pls/*/LC_MESSAGES *.mo
+recursive-include src/pls/specterext/specterext-pls/translations/*/LC_MESSAGES *.po
+include requirements.txt

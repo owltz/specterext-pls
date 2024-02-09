@@ -1,0 +1,5 @@
+{% extends "base.jinja" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for(service.id +'_endpoint' + '.static', filename='specterext-pls/css/styles.css') }}">
+<script type="text/javascript" src="{{ url_for(service.id +'_endpoint' + '.static', filename='specterext-pls/javascript/pls.min.js') }}" />
+{% endblock %}
